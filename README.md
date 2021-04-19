@@ -1,70 +1,135 @@
-# Getting Started with Create React App
+# 리액트 테스트 입니다.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 테스트 확인 방법
+  1. git clone을 통해 내려받는다
+  2. 해당 디렉토리에서 npm install
+  3. 다 설치되고 나면 npm start로 실행하여 테스트
+-------
 
-## Available Scripts
+## 0. 사용된 라이브러리
+  - react-chartjs.2, chart.js
+  - axios
+  - react-router-dom
+  - react-icons
+  - styled-components, styled-reset
+  - use-react-router
+  - (추가적인 라이브러리는 package.json을 통해 확인 할 수 있습니다.)
+--------
+## 1. 구현 내용
+@문제 1
+ - 주어진 api를 통해 환자 정보를 axios로 받아 state로 저장.
+ - 한 페이지당 row 갯수 15개로 설정. 
+ - 특정 컬럼으로 정렬하여 데이터 확인 가능
 
-In the project directory, you can run:
+@문제 2
+ - 성별, 나이, 인종, 민족, 사망 여부에 따른 filter기능 구현
 
-### `yarn start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+@문제 3
+ - 목록에서 클릭된 해당 환자의 상세정보 확인 가능
+ - 상세정보에 전체 방문 수, 진단정보가 포함되어 있음.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+@문제 4
+ - 테이블 컴포넌트 위에 각 종류에 맞는 그래프 배치
+ - 그래프의 라벨을 클릭하면 해당 필터기능 수행
+----------
 
-### `yarn test`
+## 2. 기능 설명
++ ### 1 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+  - 페이지네이션
 
-### `yarn build`
+    api를 통해 전체 데이터의 length를 받아 페이지네이션 처리 하였습니다.
+  
+    페이지 넘버 클릭 시 /list?pageIndex="해당인덱스" 주소로 이동 하며
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+    그에 따른 데이터를 불러오게 합니다. 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+    ++추가적인 예외처리++
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+    페이지네이션의 크기보다 큰 페이지를 주소창에 입력하여 이동 시 페이지가
 
-### `yarn eject`
+    없을 때는 해당되는 데이터가 없다고 "데이터가 없어요" 문구를 띄워줍니다.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
++ ### 2
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+  - 필터 기능
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+    헤더 부분에 위치한 필터입니다. 이 필터는 맨 처음 필터 섹션을 선택을 하고
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+    나면 input창이 나오게 되며 그에 따른 input을 입력하게 되면 필드에 있는
 
-## Learn More
+    데이터랑 비교를 하여 한글자씩 매칭을 합니다. 그에 따른 결과를 보여줍니다.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
++ ### 3
 
-### Code Splitting
+  - 리스트 정렬 기능
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+    해당 리스트들의 메뉴를 통해 정렬 할 수 있는 기능을 구현 하였습니다.
 
-### Analyzing the Bundle Size
+    api주소 조작을 통해 구현되었으며, 정렬 버튼을 누르면 해당하는 state에
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+    메뉴의 이름과 매칭되는 문자열이 들어가게 됩니다. 결국 이 문자열을
 
-### Making a Progressive Web App
+    api주소에 동적으로 바꾸어 주면서 정렬 데이터를 받아오게 하였습니다.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
++ ### 4
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+  - 환자 상세정보 보기
 
-### Deployment
+    리스트 중에 환자 데이터를 하나 골라서 누르게 되면 해당하는 상세 환자
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+    정보를 밑에 추가적으로 나타나게하였습니다. 해당되는 리스트를 클릭하면
 
-### `yarn build` fails to minify
+    person_id를 state에 저장하여 axios로 요청하게 됩니다.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+    그에따라 생성된 상세정보를 보여주는 박스 요소는 
+
+    클릭했는지 유무를 판단하는 boolean state를 조작하여 보여주게 됩니다.
+
+
++ ### 5
+
+  - 그래프 차트
+
+    그래프 데이터 api를 axios로 요청하여 나타내 주게 됩니다.
+
+    react-chartjs-2 라이브러리를 사용하였으며, 각 조건에 맞게
+    
+    데이터 배열의 카운트를 집계하는 함수를 각각 생성하여 결과값을 return 하였습니다.
+
+    결과값은 차트에 배열형태로 들어가게 되어 각 요소를 시각적으로 볼 수 있습니다.
+
+----------
+
+## 3. 잘했다고 생각하는 점
+
+  - 페이지네이션 기능을 라이브러리 쓰지않고 직접 구현하였음 
+
+  - 주소에 그 페이지를 직접입력하여 들어가도 해당되는 데이터와 페이지를 정확하게 보여 줌
+
+  - 데이터가 없는 페이지 예외처리
+
+  - 해당 분야의 임시 로고를 그나마 이쁘다고 생각하는것으로 배치하였음
+
+## 4. 아쉽다고 생각하는 점
+
+  - redux를 처음부터 셋팅해서 사용하였으면 state를 보내주는 depth가 현저히 줄고
+    
+    코드도 깔끔하게 됐을텐데 이미 시간이 꽤 지나있었고, 설정해주기엔 먼 강을 건넌 것
+
+    같아서 redux없이 진행하였습니다.
+
+  - 필터 처리를 할 때 전체 페이지가 아닌 해당되는 페이지에 필터 처리가 되게 구현하였음.
+
+    (이게 정답일 수도 있지만 아쉽다고 느낌)
+  
+  - 시간이 하루밖에 주어지지 않아 기능 구현에 집중을 하다 보니 디자인 요소에 신경을
+   
+    많이 쓰지 못한 것 같다.
+
+  - 정렬 기능을 원래 업비트 앱 처럼 3가지 경우의 수로 만들어야 하는데 처음 설계 미스로
+
+    2가지 경우만 현재 나오고 있음.
